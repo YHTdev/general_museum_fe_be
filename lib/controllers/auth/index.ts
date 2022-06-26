@@ -17,6 +17,7 @@ export const LoginController = async (
       if (verified) {
         const accessToken = signToken(user)
         res.setHeader('Set-Cookie',`accessToken=${accessToken}`)
+        
         res.status(200).json({
           statusCode: 200,
           message: `Login successful`,
