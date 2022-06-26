@@ -11,7 +11,7 @@ export const AdminTitle = ({ children, className }) => {
     <div
       className={`${
         className || ""
-      } text-lg leading-loose tracking-wide text-slate-900`}>
+      } text-lg leading-loose tracking-wide text-slate-900 sample`}>
       {children}
     </div>
   );
