@@ -6,9 +6,6 @@ export function middleware (req: NextRequest) {
     req.headers.append("accessToken",accessToken)
     return NextResponse.next()
   } else {
-    return NextResponse.json({
-      message: `Unauthenticated User`,
-      statusCode: 401
-    })
+    return NextResponse.redirect('/auth/login')
   }
 }
