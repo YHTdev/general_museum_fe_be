@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: olone;
+    local: 'Z06-Walone Regular';
+    src: url('/assets/fonts/wr.woff') format('woff');
+    src: url('/assets/fonts/wr.woff2') format('woff2');
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: olone;
+    src: url('/assets/fonts/wbold.woff') format('woff');
+    src: url('/assets/fonts/wbold.woff2') format('woff2');
+    local: 'Z06-Walone Bold';
+    font-style: bold;
+  }
+  
+  * {
+    font-family: olone;
+  }
+  
+  
+  /* Works on Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #e6b041 #2b3646;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #2b3646;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #2b3646;
+    border-radius: 10px;
+    border: 1px solid #2b3646;
+  }
