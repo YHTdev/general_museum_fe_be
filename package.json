@@ -10,11 +10,14 @@
   },
   "dependencies": {
     "@prisma/client": "3.15.2",
+    "@types/multiparty": "^0.0.33",
     "bcrypt": "^5.0.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
+    "multiparty": "^4.2.3",
     "next": "12.1.6",
     "next-auth": "^4.6.1",
+    "next-connect": "^0.12.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "siwe": "^1.1.6"

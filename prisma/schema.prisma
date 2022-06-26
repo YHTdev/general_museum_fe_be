@@ -47,7 +47,7 @@ model Category {
 model Book {
   id    String @id @default(uuid())
   name  String
-  cover String?
+  cover String? @db.LongText
   pages Page[]
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String?
