@@ -1,0 +1,21 @@
+appNmSetting 
+ ***Get setting ***
+ GET
+ /api/setting  
+
+
+***update setting ***
+PUT
+/api/admin/setting
+
+data {
+  appNm: string
+  description: string
+  logo?: string
+  phone: string
+  address: string
+  email: string
+  map?: string
+}
+
+
