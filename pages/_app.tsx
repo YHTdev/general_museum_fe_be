@@ -4,9 +4,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-cube";
+import {ToastProvider} from 'react-toast-notifications'
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <ToastProvider>
+       <Component {...pageProps} />
+    </ToastProvider>
+  )
 }
 
 export default MyApp
