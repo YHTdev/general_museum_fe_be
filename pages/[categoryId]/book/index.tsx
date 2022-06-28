@@ -4,7 +4,7 @@ import { API } from '../../../lib/services'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BooksForm } from '../../../components/organisms/books'
-import { UiHeader } from '../../../components/Atoms/UiHeader'
+import { UiHeader } from '../../../components/atoms/UiHeader'
 
 // interface BookListPage{
 //     data: any
