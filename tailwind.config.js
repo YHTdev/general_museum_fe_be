@@ -43,7 +43,7 @@ module.exports = {
       pink: colors.pink,
       rose: colors.rose,
       primary:colors.slate[900],
-      secondary:colors.yellow[500],
+      secondary:colors.yellow[600],
       inverse:colors.slate[100]
     }),
     columns: {

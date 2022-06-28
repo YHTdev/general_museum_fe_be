@@ -1,7 +1,8 @@
 import React from "react";
 import {motion} from 'framer-motion'
-import { LeftArrow } from "./Icons/leftArrow";
-import { RightArrow } from "./Icons/rightArrow";
+import { RightArrow } from "../icons/rightArrow";
+import { LeftArrow } from "../icons/leftArrow";
+
 interface props{
     title:string;
 }
