@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import { API } from '../../../lib/services'
 import React,{useState,useCallback,useEffect} from 'react'
 import HTMLFlipBook from 'react-pageflip';
+import { UiHeader } from '../../../components/Atoms/UiHeader';
 // react-flip-book
 
 const DetailBookPage:NextPage =(props)=>{
@@ -35,10 +36,13 @@ const DetailBookPage:NextPage =(props)=>{
 
     
     return(
-        <div>
-            book detail Page
+        <div className='bg-slate-900 min-h-screen px-2 py-2'>
+            {
+              book && book.name && <UiHeader title={book.name} />
+            }
            
            {
+            
             book && book.pages && <HTMLFlipBook 
             width={300}
             showPageCorners={true}
@@ -63,7 +67,7 @@ const DetailBookPage:NextPage =(props)=>{
              clickEventForward={true}
              useMouseEvents={true}
              renderOnlyPageLengthChange={false}
-             className="m-20 rounded shadow-sm"
+             className="m-20 rounded shadow-sm  flex justify-center mx-40"
              
              >
                 <Page number="0" isStartPage>Start Page</Page>
@@ -91,14 +95,14 @@ export const Page = React.forwardRef((props:any, ref:any) => {
      
       return (
         <div 
-        className="demoPage rounded rounded-r-none rounded-b-none shadow-sm bg-cover bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"
+        className="demoPage rounded-t-sm rounded-l-sm shadow-sm bg-cover bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"
         ref={ref}>
        
       </div>
       )
     }
     return (
-      <div className="demoPage demoPage rounded rounded-t-none rounded-l-none shadow-sm py-5 px-10 " ref={ref}>
+      <div className="demoPage bg-white rounded-r-sm rounded-b-sm shadow-sm py-5 px-10 " ref={ref}>
          
           <h1 className='mb-5'>{props.title}</h1>
           <p className='flex flex-1 flex-wrap text-sm text-gray-900'>{props.children}</p>
