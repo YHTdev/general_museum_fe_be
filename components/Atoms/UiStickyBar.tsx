@@ -1,9 +1,10 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { appData } from '../../_data'
-import { PhoneIcon } from './icons/PhoneIcon'
-import { EmailIcon } from './icons/email'
-import { FacebookIcon } from './icons/facebook'
+import { appData } from '../_data'
+import { PhoneIcon } from './Icons/PhoneIcon'
+import { EmailIcon } from './Icons/email'
+import { FacebookIcon } from './Icons/facebook'
+
 export const UiStickyBar: React.FC = () => {
   return (
     <motion.nav
@@ -39,3 +40,4 @@ export const UiStickyBar: React.FC = () => {
     </motion.nav>
   )
 }
+

@@ -5,6 +5,7 @@ import { HeroContent } from '../components/Organisms/Home'
  const HomePage:NextPage =()=>{
     return(
         <HeroContent />
+    
     )
 }
 

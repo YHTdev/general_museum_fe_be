@@ -1,9 +1,11 @@
 import React from 'react'
 
-export const BookPage:React.FC =()=>{
+const BookPage:React.FC =()=>{
     return(
         <div>
           <h3>BookPage</h3>
         </div>
     )
 }
+
+export default BookPage
