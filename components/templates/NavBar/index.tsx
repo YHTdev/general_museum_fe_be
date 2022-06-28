@@ -16,7 +16,7 @@ export const NavBar:React.FC<props> = ({ isOpen, setIsOpen }) => {
     push('/')
   }
   return (
-    <div className='w-full px-2 py-2 bg-indigo-700 text-white'>
+    <div className='w-full px-2 py-2 bg-secondary text-inverse'>
       <div className='flex w-full max-w-screen-2xl mx-auto justify-between items-center content-center'>
         <div className='flex justify-start space-x-4 items-center content-center'>
           <UiDrawerButton isOpen={isOpen} setIsOpen={setIsOpen} />

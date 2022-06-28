@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import { API } from '../../../lib/services'
 import React,{useState,useCallback,useEffect} from 'react'
 import HTMLFlipBook from 'react-pageflip';
-import { UiHeader } from '../../../components/Atoms/UiHeader';
+import { UiHeader } from '../../../components/atoms/UiHeader';
 // react-flip-book
 
 const DetailBookPage:NextPage =(props)=>{
