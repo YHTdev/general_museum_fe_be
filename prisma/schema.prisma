@@ -39,6 +39,7 @@ model Setting{
 model Category {
   id    String @id @default(uuid())
   name  String
+  cover String?
   books Book[]
   updatedAt DateTime @default(now())
   createdAt DateTime @default(now())
