@@ -1,4 +1,6 @@
 import React from 'react'
+import { EmailIcon } from '../../atoms/icons/email'
+import { LockIcon } from '../../atoms/icons/lock'
 import { UiButton } from '../../atoms/UiButton'
 import { UiInput } from '../../atoms/UiInput'
 
@@ -14,6 +16,7 @@ export const LoginForm: React.FC<props> = ({ formData, setFormData }) => {
         <UiInput
           formData={formData}
           setFormData={setFormData}
+          icon={<EmailIcon className='text-yellow-600 m-4' />}
           inputProps={{
             type: 'email',
             required: true,
@@ -22,12 +25,14 @@ export const LoginForm: React.FC<props> = ({ formData, setFormData }) => {
             id: 'email',
             autoFocus:true
             
+            
           }}
         />
 
         <UiInput
           formData={formData}
           setFormData={setFormData}
+          icon={<LockIcon className='text-yellow-600 m-4' />}
           inputProps={{
             type: 'password',
             required: true,
