@@ -4,6 +4,7 @@ import { API } from '../../../lib/services'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { BooksForm } from '../../../components/organisms/books'
+import { UiHeader } from '../../../components/Atoms/UiHeader'
 
 // interface BookListPage{
 //     data: any
@@ -38,8 +39,9 @@ import { BooksForm } from '../../../components/organisms/books'
    }, [getBooks])
     return(
         <div>
-            Book list Page
-            <div className=''>
+            
+            <div className="bg-slate-900 min-h-screen px-2 py-2">
+                <UiHeader title='စာအုပ်များ...' />
                 <BooksForm books={books}/>
                     
             </div>
