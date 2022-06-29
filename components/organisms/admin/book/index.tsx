@@ -15,6 +15,7 @@ export interface bookProps{
     id?:string;
     name?:string;
     cover?:string;
+    categoryId?:string;
     updatedAt?:string;
     pages?:pageProps[];
     Category?:categoryProps;
