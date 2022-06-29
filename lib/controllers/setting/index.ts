@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import { NextApiRequest, NextApiResponse } from 'next'
+import { serviceProps, silderProps } from '../../../pages'
 const prisma = new PrismaClient()
 interface settingProps {
   appNm: string
@@ -16,7 +17,8 @@ export const UpdateSetting = async (
   res: NextApiResponse
 ) => {
   try {
-    console.log(req.body)
+    const services:serviceProps[] = req.body.services;
+    const sliders:silderProps[] = req.body.sliders;
     const settingObj: settingProps = {
       appNm: req.body.appNm,
       descrption: req.body.descrption,
@@ -26,11 +28,32 @@ export const UpdateSetting = async (
       email: req.body.email,
       map: req.body.map
     }
+   
+      await prisma.slider.deleteMany({
+        where:{
+          settingId:req.body.id
+        }
+      })
+
+      await prisma.service.deleteMany({
+        where:{
+          settingId:req.body.id
+        }
+      })
+  
     const setting = await prisma.setting.update({
       where: {
         id: req.body.id
       },
-      data: settingObj
+      data: {...settingObj,services:{
+        createMany:{
+          data:services
+        }
+      },sliders:{
+        createMany:{
+          data:sliders
+        }
+      }}
     })
     if (setting) {
       res.status(200).json({

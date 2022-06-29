@@ -13,7 +13,7 @@ datasource db {
 model User {
   id        String   @id @default(uuid())
   name      String?
-  email     String @unique
+  email     String   @unique
   password  String
   phone     String?
   address   String?
@@ -22,45 +22,63 @@ model User {
   createdAt DateTime @default(now())
 }
 
-model Setting{
-  id String @id @default(uuid())
-  appNm String 
-  descrption String @db.LongText
-  logo String?
-  phone String
-  address String
-  email String
-  map String? @db.LongText
-  updatedAt DateTime @default(now())
-  createdAt DateTime @default(now())
-  
+model Setting {
+  id         String    @id @default(uuid())
+  appNm      String
+  descrption String    @db.LongText
+  logo       String?
+  phone      String
+  address    String
+  email      String
+  map        String?   @db.LongText
+  updatedAt  DateTime  @default(now())
+  createdAt  DateTime  @default(now())
+  sliders    Slider[]
+  services   Service[]
+
+}
+
+model Service {
+  id        String   @id @default(uuid())
+  src       String   @db.LongText
+  title     String
+  subTitle  String
+  Setting   Setting? @relation(fields: [settingId], references: [id])
+  settingId String?
 }
 
 model Category {
-  id    String @id @default(uuid())
-  name  String
-  cover String?
-  books Book[]
+  id        String   @id @default(uuid())
+  name      String
+  cover     String?  @db.LongText
+  books     Book[]
   updatedAt DateTime @default(now())
   createdAt DateTime @default(now())
+}
+
+model Slider {
+  id        String   @id @default(uuid())
+  src       String   @db.LongText
+  Setting   Setting? @relation(fields: [settingId], references: [id])
+  settingId String?
 }
 
 model Book {
-  id    String @id @default(uuid())
-  name  String
-  cover String? @db.LongText
-  pages Page[]
+  id         String    @id @default(uuid())
+  name       String
+  cover      String?   @db.LongText
+  pages      Page[]
   Category   Category? @relation(fields: [categoryId], references: [id])
   categoryId String?
-  updatedAt DateTime @default(now())
-  createdAt DateTime @default(now())
+  updatedAt  DateTime  @default(now())
+  createdAt  DateTime  @default(now())
 }
 
 model Page {
-  id     String  @id @default(uuid())
-  desc   String  @db.LongText
-  Book   Book?   @relation(fields: [bookId], references: [id])
-  bookId String?
+  id        String   @id @default(uuid())
+  desc      String   @db.LongText
+  Book      Book?    @relation(fields: [bookId], references: [id])
+  bookId    String?
   updatedAt DateTime @default(now())
   createdAt DateTime @default(now())
 }
