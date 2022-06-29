@@ -70,9 +70,17 @@ export const SettingForm: React.FC<props> = ({
         <div className='col-span-8'>{isEdit?<UiInput formData={setting} setFormData={setSetting} />:setting.phone}</div>
 
         <div className='col-span-4'>
-          <span> Phone </span>
+          <span> Slioders Images </span>
         </div>
-        <div className='col-span-8'>{isEdit?<UiMultiFileInput inputProps={{name:"sliders",id:"sliders"}} formData={setting} setFormData={setSetting} />:setting.phone}</div>
+        <div className='col-span-8'>{isEdit?<UiMultiFileInput inputProps={{name:"sliders",id:"sliders"}} formData={setting} setFormData={setSetting} />:<div>
+           
+          </div>}</div>
+          <div className='col-span-4'>
+          <span> Services Images </span>
+        </div>
+          <div className='col-span-8'>{isEdit?<UiMultiFileInput inputProps={{name:"services",id:"services"}} formData={setting} setFormData={setSetting} />:<div>
+           
+          </div>}</div>
       </div>
     </form>
   )

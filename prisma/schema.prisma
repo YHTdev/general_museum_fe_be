@@ -41,8 +41,8 @@ model Setting {
 model Service {
   id        String   @id @default(uuid())
   src       String   @db.LongText
-  title     String
-  subTitle  String
+  title     String?
+  subTitle  String?
   Setting   Setting? @relation(fields: [settingId], references: [id])
   settingId String?
 }

@@ -41,7 +41,7 @@ export const UiMultiFileInput: React.FC<props> = ({
   }
   return (
     <div className=' px-2 py-2'>
-      <pre>{JSON.stringify(formData,null,2)} </pre>
+     
       <div className='flex border-secondary rounded-md border px-1 '>
         {icon}
         <input
