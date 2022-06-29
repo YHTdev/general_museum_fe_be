@@ -1,4 +1,4 @@
-import { each } from 'lodash'
+
 import React from 'react'
 interface props {
   formData: any
@@ -20,8 +20,11 @@ export const UiFileInput: React.FC<props> = ({
     if(files){
         fileReader.readAsDataURL(files[0])
         fileReader.onload=(event)=>{
-           console.log(event.target?.result)
-            setFormData(event.target?.result)
+           
+            setFormData({
+                ...formData,
+                [e.target.name]:event.target?.result
+            })
         }
     }
    

@@ -4,14 +4,14 @@ import { UiFileInput } from '../../../components/atoms/UiFileInput'
 import { AppWrapper } from '../../../components/templates/AdminLayout'
 
 const SettingAdmin: NextPage = () => {
-  const [file, setFile] = useState({
+  const [formData, setformData] = useState({
     src:""
   })
-  console.log(file)
+  console.log(formData)
   return (
     <AppWrapper>
       <div>
-        <UiFileInput formData={file} setFormData={setFile} inputProps={{name:"src",id:"src"}} />
+        <UiFileInput formData={formData} setFormData={setformData} inputProps={{name:"src",id:"src"}} />
       </div>
     </AppWrapper>
   )
