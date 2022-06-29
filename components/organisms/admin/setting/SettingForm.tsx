@@ -72,7 +72,7 @@ export const SettingForm: React.FC<props> = ({
         <div className='col-span-4'>
           <span> Phone </span>
         </div>
-        <div className='col-span-8'>{isEdit?<UiMultiFileInput formData={setting} setFormData={setSetting} />:setting.phone}</div>
+        <div className='col-span-8'>{isEdit?<UiMultiFileInput inputProps={{name:"sliders",id:"sliders"}} formData={setting} setFormData={setSetting} />:setting.phone}</div>
       </div>
     </form>
   )

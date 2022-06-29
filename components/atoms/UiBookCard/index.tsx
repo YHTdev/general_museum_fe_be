@@ -6,8 +6,9 @@ interface props {
   book: any
 }
 export const BookCard: React.FC<props> = ({ book }) => {
+  console.log(book)
   return (
-    <Link href={`book/`+book.id}>
+    <Link href={`/${book.categoryId}/book/`+book.id}>
     <motion.div
       initial={{ scale: 0.9, opacity: 0.9 }}
       whileHover={{ scale: 1, opacity: 1 }}

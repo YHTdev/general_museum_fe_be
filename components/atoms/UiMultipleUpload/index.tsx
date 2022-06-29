@@ -1,36 +1,47 @@
 import React from 'react'
+
 interface props {
   formData: any
   setFormData: React.Dispatch<React.SetStateAction<any>>
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>
-  icon?: JSX.Element
+  icon?: JSX.Element;
+  multiple?:boolean
 }
 export const UiMultiFileInput: React.FC<props> = ({
   formData,
   setFormData,
   inputProps,
-  icon
+  icon,
+  multiple=true
 }) => {
 
    
   
-  const SubmitFileHandler = (e:any) => {
-    let images = e.target.files;
-   if(images){
-    for (const file of images) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          setFormData({...formData,[e.target.name]:[[...formData[e.target.name], reader.result]]});
-        };
-        reader.onerror = () => {
-          console.log(reader.error);
-        };
+  const SubmitFileHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
+    let files = e.target.files;
+    let allfiles:any[] = [];
+    if(files){
+      for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        let reader = new FileReader();
+        reader.readAsDataURL(file)
+        reader.onload =()=>{
+          let fileInfo ={
+            name:file.name,
+            type:file.type,
+            size:Math.round(file.size/1000)+'kb',
+            src:reader.result
+          }
+          allfiles.push(fileInfo);
+          
+        }
       }
-   }
+    }
+    setFormData({...formData,[e.target.name]:allfiles})
   }
   return (
     <div className=' px-2 py-2'>
+      <pre>{JSON.stringify(formData,null,2)} </pre>
       <div className='flex border-secondary rounded-md border px-1 '>
         {icon}
         <input
