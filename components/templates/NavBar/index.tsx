@@ -1,40 +1,37 @@
-import { useRouter } from 'next/router';
-import React from 'react'
+import { useRouter } from "next/router";
+import React from "react";
 import { Dispatch, SetStateAction } from "react";
-import { PowerIcon } from '../../atoms/icons/powerIcon';
-import { AppLogo } from '../../atoms/UiAppLogo'
-import { UiDrawerButton } from '../../atoms/UiDrawerButton'
+import { PowerIcon } from "../../atoms/icons/powerIcon";
+import { AppLogo } from "../../atoms/UiAppLogo";
+import { UiDrawerButton } from "../../atoms/UiDrawerButton";
 
-interface props{
+interface props {
   isOpen: boolean;
-  setIsOpen : Dispatch<SetStateAction<boolean>>
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-export const NavBar:React.FC<props> = ({ isOpen, setIsOpen }) => {
-  const { push } = useRouter()
+export const NavBar: React.FC<props> = ({ isOpen, setIsOpen }) => {
+  const { push } = useRouter();
   const Logout = () => {
-    sessionStorage.clear()
-    push('/')
-  }
+    sessionStorage.clear();
+    push("/");
+  };
   return (
-    <div className='w-full px-2 py-2 bg-primary text-inverse'>
-      <div className='flex w-full max-w-screen-2xl mx-auto justify-between items-center content-center'>
-        <div className='flex justify-start space-x-4 items-center content-center'>
+    <div className="w-full px-2 py-2 bg-primary text-inverse">
+      <div className="flex items-center content-center justify-between w-full mx-auto max-w-screen-2xl">
+        <div className="flex items-center content-center justify-start space-x-4">
           <UiDrawerButton isOpen={isOpen} setIsOpen={setIsOpen} />
-          {
-            !isOpen &&  <AppLogo />
-          }
+          {!isOpen && <AppLogo />}
         </div>
 
         <button
           onClick={() => {
-            Logout()
+            Logout();
           }}
-          className='flex space-x-2 justify-center items-center content-center'
-        >
-            <PowerIcon className="w-auto h-6" />
+          className="flex items-center content-center justify-center space-x-2">
+          <PowerIcon className="w-auto h-6" />
           <span>ထွက်ရန်</span>
         </button>
       </div>
     </div>
-  )
-}
+  );
+};

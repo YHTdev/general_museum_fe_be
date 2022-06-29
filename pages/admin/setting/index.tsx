@@ -14,7 +14,7 @@ const SettingAdmin: NextPage = () => {
         <UiFileInput formData={formData} setFormData={setformData} inputProps={{name:"src",id:"src"}} />
       </div>
     </AppWrapper>
-  )
-}
+  );
+};
 
-export default SettingAdmin
+export default SettingAdmin;
