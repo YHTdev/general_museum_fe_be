@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import { UiDashboardHeader } from '../../atoms/UiDashboardHeader';
 import { UiDrawer } from '../../atoms/UiDrawer';
 import { NavBar } from '../NavBar'
@@ -6,7 +6,9 @@ import { SideNav } from '../SideNav';
 
 interface props{
     children:JSX.Element
-}
+    
+    
+}   
 
 export const AppWrapper:React.FC<props> =({children})=>{
     const [isOpen,setIsOpen] = useState(false);
