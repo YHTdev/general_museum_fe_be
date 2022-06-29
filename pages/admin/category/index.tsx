@@ -1,7 +1,9 @@
 import { NextPage } from 'next'
 import { useCallback, useEffect, useState } from 'react'
+import { PlusIcon } from '../../../components/atoms/icons/plusIcon'
 import { UiModal } from '../../../components/atoms/UiModal'
 import { CategoryForm } from '../../../components/organisms/admin/category'
+import { CategoryEditForm } from '../../../components/organisms/admin/category/categoryEdit'
 import { AppWrapper } from '../../../components/templates/AdminLayout'
 import { API } from '../../../lib/services'
 import { categoryProps } from '../../category'
@@ -39,26 +41,42 @@ const CategoryAdmin: NextPage = () => {
           console.log(JSON.stringify(err))
       })
   }
-  const [formData,setFormData] =useState([]);
+  const [formData,setFormData] =useState<categoryProps>();
   const editHandler = (category:categoryProps)=>{
     console.log(category);
      
-    setFormData({ ...formData })
+    setFormData({ ...formData,name:category.name,id:category.id })
 
     setIsEditModalOpen(!isEditModalOpen)
   }
   const EditForm=(e:any)=>{
     e.preventDefault();
   }
+  const [isCreateCategoryModalOpen,setIsCreateCategoryModalOpen]=useState(false)
+  const createFormOpen=()=>{
+    setIsCreateCategoryModalOpen(!isCreateCategoryModalOpen);
+  }
   return (
     <AppWrapper>
       <>
+      <div className='flex justify-end items-center content-center'>
+                <button onClick={() => createFormOpen()} className='px-36 py-2 focus:outline-none'>
+                <PlusIcon className='text-secondary w-auto h-12' />
+                </button>
+            </div>
       {categoreis && <CategoryForm catgoreis={categoreis} editHandler={editHandler} deleteHandler={deleteHandler}/>}
       <UiModal isOpen={isEditModalOpen} setIsOpen={setIsEditModalOpen} className="">
             <form
               onSubmit={e => {
                 EditForm(e)
               }}
+            >
+             <CategoryEditForm formData={formData} setFormData={setFormData} />
+          </form>
+        </UiModal>
+        <UiModal isOpen={isCreateCategoryModalOpen} setIsOpen={setIsCreateCategoryModalOpen} className="">
+            <form
+             
             >
             
           </form>

@@ -16,8 +16,8 @@ export interface bookProps{
     name?:string;
     cover?:string;
     updatedAt?:string;
-    pages:pageProps[];
-    Category:categoryProps;
+    pages?:pageProps[];
+    Category?:categoryProps;
 }
 interface props{
     books:bookProps[]
@@ -58,7 +58,7 @@ export const BookForm:React.FC<props> =({books,editHandler,deleteHandler})=>{
                                     {b.name}
                                 </TableCell>
                                 <TableCell isHeader={false}>
-                                    {b.Category.name}
+                                    {b.Category && b.Category.name}
                                 </TableCell>
                                 <TableCell isHeader={false}>
                                     <img src={b.cover} alt={b.name} className="w-16 h-16"/>
@@ -67,10 +67,10 @@ export const BookForm:React.FC<props> =({books,editHandler,deleteHandler})=>{
                                     {b.updatedAt}
                                 </TableCell>
                                 <TableCell isHeader={false}>
-                                <button className="mx-2 focus:appearance-none focus:outline-none" onClick={()=>editHandler(b)}>
+                                <button className="mx-2 focus:appearance-none focus:outline-none  active:outline-none" onClick={()=>editHandler(b)}>
                                     <EditIcon className="w-4 h-4" />
                                 </button>
-                                <button className="mx-2 focus:appearance-none focus:outline-none" onClick={()=>deleteHandler(b.id)}>
+                                <button className="mx-2 focus:appearance-none focus:outline-none active:outline-none" onClick={()=>deleteHandler(b.id)}>
                                     <DeleteIcon className="w-4 h-4"/>
                                 </button>
                             </TableCell>

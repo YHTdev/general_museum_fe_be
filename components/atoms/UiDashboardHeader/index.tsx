@@ -1,14 +1,15 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React from 'react'
+import React  from 'react'
 import { BookIcon } from '../icons/bookIcon'
 import { CategoryIcon } from '../icons/categoryIcon'
 import { HomeIcon } from '../icons/homeIcon'
+
 import { SettingIcon } from '../icons/setting'
 
 export const UiDashboardHeader: React.FC = () => {
   const { pathname } = useRouter()
-
+    
   return (
     <div className='w-full px-2 py-4  flex justify-center items-center content-center bg-inverse text-secondary'>
       <nav
@@ -62,6 +63,7 @@ export const UiDashboardHeader: React.FC = () => {
               </Link>
             )}
           </li>
+          
         </ol>
       </nav>
     </div>

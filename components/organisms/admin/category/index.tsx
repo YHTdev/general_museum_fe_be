@@ -66,10 +66,10 @@ export const CategoryForm:React.FC<props> =({catgoreis,editHandler,deleteHandler
                             {c.createdAt && format(new Date(c.createdAt),"yyyy-MM-dd")}
                             </TableCell>
                             <TableCell isHeader={false}>
-                                <button className="mx-2" onClick={()=>editHandler(c)}>
+                                <button className="mx-2 focus:appearance-none focus:outline-none  active:outline-none" onClick={()=>editHandler(c)}>
                                     <EditIcon className="w-4 h-4" />
                                 </button>
-                                <button className="mx-2" onClick={()=>deleteHandler(c.id)}>
+                                <button className="mx-2 focus:appearance-none focus:outline-none  active:outline-none" onClick={()=>deleteHandler(c.id)}>
                                     <DeleteIcon className="w-4 h-4"/>
                                 </button>
                             </TableCell>
