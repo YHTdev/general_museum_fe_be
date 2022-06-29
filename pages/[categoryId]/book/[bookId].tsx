@@ -83,7 +83,7 @@ export const Page = React.forwardRef((props: any, ref: any) => {
   if (props.isStartPage) {
     return (
       <div
-        className="demoPage rounded-t-sm rounded-l-sm shadow-sm bg-cover bg-[url('https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjR8fGJvb2t8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60')]"
+        className="demoPage rounded-t-sm rounded-l-sm shadow-sm bg-cover bg-[url('')]"
         ref={ref}
       ></div>
     )
