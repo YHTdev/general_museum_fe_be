@@ -6,7 +6,12 @@ export default async function halder (
   res: NextApiResponse
 ) {
   try {
-    const setting = await prisma.setting.findMany({})
+    const setting = await prisma.setting.findMany({
+      include:{
+        services:true,
+        sliders:true
+      }
+    })
     if (setting.length > 0) {
       res.status(200).json({
         statusCode: 200,
@@ -20,9 +25,12 @@ export default async function halder (
       })
     }
   } catch (error) {
+    console.log(error)
     res.status(200).json({
       statusCode: 500,
       message: error
     })
   }
 }
+
+
