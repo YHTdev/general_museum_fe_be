@@ -4,12 +4,14 @@ import { Dispatch, SetStateAction } from "react";
 import { PowerIcon } from "../../atoms/icons/powerIcon";
 import { AppLogo } from "../../atoms/UiAppLogo";
 import { UiDrawerButton } from "../../atoms/UiDrawerButton";
+import { settingProps } from "../AdminLayout";
 
 interface props {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
+  setting?:settingProps
 }
-export const NavBar: React.FC<props> = ({ isOpen, setIsOpen }) => {
+export const NavBar: React.FC<props> = ({ isOpen, setIsOpen,setting}) => {
   const { push } = useRouter();
   const Logout = () => {
     sessionStorage.clear();
@@ -20,7 +22,7 @@ export const NavBar: React.FC<props> = ({ isOpen, setIsOpen }) => {
       <div className="flex items-center content-center justify-between w-full mx-auto max-w-screen-2xl">
         <div className="flex items-center content-center justify-start space-x-4">
           <UiDrawerButton isOpen={isOpen} setIsOpen={setIsOpen} />
-          {!isOpen && <AppLogo />}
+          {!isOpen && <AppLogo setting={setting} />}
         </div>
 
         <button

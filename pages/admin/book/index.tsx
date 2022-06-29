@@ -1,9 +1,10 @@
 import { NextPage } from "next";
-import { useState,useCallback,useEffect } from "react";
+import React, { useState,useCallback,useEffect } from "react";
 import { PlusIcon } from "../../../components/atoms/icons/plusIcon";
 import { UiModal } from "../../../components/atoms/UiModal";
 import { BookForm, bookProps } from "../../../components/organisms/admin/book";
 import { BookEditForm } from "../../../components/organisms/admin/book/bookEdit";
+import { CreateBookForm } from "../../../components/organisms/admin/book/createbook";
 import { AppWrapper } from "../../../components/templates/AdminLayout";
 import { API } from "../../../lib/services";
 
@@ -60,6 +61,17 @@ const BookAdmin:NextPage =()=>{
     const createFormOpen=()=>{
         setIsCreateBookModalOpen(!isCreateBookModalOpen);
     }
+
+    const CreateBook = (e:React.FormEvent)=>{
+        e.preventDefault();
+        API.post("/v1/admin/book",formData).then(res=>{
+            console.log(res.data)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+        
+    }
     return(
         <AppWrapper>
            <>
@@ -79,8 +91,8 @@ const BookAdmin:NextPage =()=>{
             </form>
             </UiModal>
             <UiModal isOpen={isCreateBookModalOpen} setIsOpen={setIsCreateBookModalOpen} className="">
-                <form>
-
+                <form onSubmit={(e)=>CreateBook(e)}>
+                    <CreateBookForm formData={formData} setFormData={setFormData} />
                 </form>
             </UiModal>
            </>

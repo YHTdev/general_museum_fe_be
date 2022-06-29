@@ -33,7 +33,7 @@ export const UiSelectInput:React.FC<props> = ({
     return (
       <div className="flex mx-2">
         <select
-          value={formData[name]}
+          
           name={name}
           id={id}
           className="w-full flex border-secondary rounded-md border  justify-start items-center content-center px-2 py-2 focus:outline-none appearance-none bg-white"

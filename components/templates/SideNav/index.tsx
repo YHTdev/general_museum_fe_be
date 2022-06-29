@@ -6,10 +6,15 @@ import { DashbaordIcon } from "../../atoms/icons/dashboardIcon";
 import { SettingIcon } from "../../atoms/icons/setting";
 import { CategoryIcon } from "../../atoms/icons/categoryIcon";
 import { BookIcon } from "../../atoms/icons/bookIcon";
-export const SideNav: React.FC = () => {
+import { settingProps } from "../AdminLayout";
+
+interface props{
+  setting?:settingProps
+}
+export const SideNav: React.FC<props> = ({setting}) => {
   return (
     <div className="flex flex-col w-full px-2 py-2 space-y-4 bg-slate-100">
-      <AppLogo />
+      <AppLogo setting={setting} />
       <div className="flex flex-col space-y-2 divide-y divide-secondary/40">
         <Link href="/admin">
           <a>
