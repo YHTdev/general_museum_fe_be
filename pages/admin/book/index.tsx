@@ -36,8 +36,8 @@ const BookAdmin:NextPage =()=>{
 
     const [formData,setFormData] =useState<bookProps>();
     const editHandler=(book:bookProps)=>{
-        console.log(book);
-        setFormData({...formData})
+        console.log(book,"book");
+        setFormData({...formData,name:book.name,cover:book.cover,categoryId:book.categoryId,pages:book.pages})
 
         setIsEditModalOpen(!isEditModalOpen)
     }

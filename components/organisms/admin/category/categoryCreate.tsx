@@ -7,7 +7,7 @@ interface props{
     setFormData:Dispatch<React.SetStateAction<any>>
    
 }
-export const CategoryEditForm:React.FC<props> =({formData,setFormData})=>{
+export const CategoryCreateForm:React.FC<props> =({formData,setFormData})=>{
     return(
         <div>
             <UiInput
@@ -21,7 +21,7 @@ export const CategoryEditForm:React.FC<props> =({formData,setFormData})=>{
                 setFormData={setFormData}
                 inputProps={{name:"cover",id:"cover"}}
             />
-            <UiSubmit title="Edit"/>
+            <UiSubmit title="Create"/>
         </div>
     )
 }

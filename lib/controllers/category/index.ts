@@ -30,6 +30,7 @@ export const getCategories = async (
 interface categoryProp {
   name: string
   id?: string
+  cover?:string
 }
 
 export const createCategory = async (
@@ -38,7 +39,8 @@ export const createCategory = async (
 ) => {
   try {
     const categoryObj: categoryProp = {
-      name: req.body.name
+      name: req.body.name,
+      cover:req.body.cover
     }
     const category = await prisma.category.create({
       data: categoryObj
@@ -67,13 +69,15 @@ export const updateCategory = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
+  console.log(req.body)
   try {
     const category = await prisma.category.update({
       where: {
         id: req.body.id
       },
       data: {
-        name: req.body.name
+        name: req.body.name,
+        cover:req.body.cover
       }
     })
     if (category) {
@@ -118,6 +122,7 @@ export const deleteCategory = async (
       })
     }
   } catch (error) {
+    console.log(error)
     res.status(200).json({
       statusCode: 500,
       message: error
