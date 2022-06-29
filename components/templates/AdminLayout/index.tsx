@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import { PowerIcon } from '../../atoms/icons/powerIcon';
-import { AppLogo } from '../../atoms/UiAppLogo';
 import { UiDashboardHeader } from '../../atoms/UiDashboardHeader';
 import { UiDrawer } from '../../atoms/UiDrawer';
 import { NavBar } from '../NavBar'
+import { SideNav } from '../SideNav';
 
 interface props{
     children:JSX.Element
@@ -19,17 +18,7 @@ export const AppWrapper:React.FC<props> =({children})=>{
                 {children}
              </div>
              <UiDrawer isOpen={isOpen} setIsOpen={setIsOpen}>
-                <AppLogo></AppLogo>
-
-                <div className='flex justify-around items-center'>
-                <PowerIcon className="w-7 h-7 my-5 mx-5"/><span>Book</span>
-                </div>
-                <div className='flex justify-around items-center'>
-                <PowerIcon className="w-7 h-7 my-5 mx-5"/><span>Book</span>
-                </div>
-                <div className='flex justify-around items-center'>
-                <PowerIcon className="w-7 h-7 my-5 mx-5"/><span>Book</span>
-                </div>
+                <SideNav />
              </UiDrawer>
         </div>
     )
