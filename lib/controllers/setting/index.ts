@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client'
+import { each } from 'lodash'
 import { NextApiRequest, NextApiResponse } from 'next'
 import { serviceProps, silderProps } from '../../../pages'
 const prisma = new PrismaClient()
@@ -17,8 +18,20 @@ export const UpdateSetting = async (
   res: NextApiResponse
 ) => {
   try {
-    const services:serviceProps[] = req.body.services;
-    const sliders:silderProps[] = req.body.sliders;
+    let services: any[] = []
+    each(req.body.services, s => {
+      services.push({
+        title: s.title,
+        subTitle: s.subTitle,
+        src: s.src
+      })
+    })
+    let sliders: any[] = []
+    each(req.body.sliders, s => {
+      sliders.push({
+        src: s.src
+      })
+    })
     const settingObj: settingProps = {
       appNm: req.body.appNm,
       descrption: req.body.descrption,
@@ -28,32 +41,36 @@ export const UpdateSetting = async (
       email: req.body.email,
       map: req.body.map
     }
-   
-      await prisma.slider.deleteMany({
-        where:{
-          settingId:req.body.id
-        }
-      })
 
-      await prisma.service.deleteMany({
-        where:{
-          settingId:req.body.id
-        }
-      })
-  
+    await prisma.slider.deleteMany({
+      where: {
+        settingId: req.body.id
+      }
+    })
+
+    await prisma.service.deleteMany({
+      where: {
+        settingId: req.body.id
+      }
+    })
+
     const setting = await prisma.setting.update({
       where: {
         id: req.body.id
       },
-      data: {...settingObj,services:{
-        createMany:{
-          data:services
+      data: {
+        ...settingObj,
+        services: {
+          createMany: {
+            data: services
+          }
+        },
+        sliders: {
+          createMany: {
+            data: sliders
+          }
         }
-      },sliders:{
-        createMany:{
-          data:sliders
-        }
-      }}
+      }
     })
     if (setting) {
       res.status(200).json({
