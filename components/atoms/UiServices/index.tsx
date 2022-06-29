@@ -24,7 +24,7 @@ export const UiService: React.FC<props> = ({services}) => {
             transition={{ease:'easeInOut',duration:1}}
             className='flex w-full justify-center items-center content-center flex-col px-2 py-2 rounded-md bg-slate-800'
           >
-            {/* <Image width={64}  height={64} src={s.src} alt={s.title} /> */}
+            <Image width={64}  height={64} src={s.src} alt={s.title} />
             
             <div className='text-slate-50 w-full px-2 py-2 flex flex-col'>
               <p className='font-bold text-sm'> {s.title} </p>

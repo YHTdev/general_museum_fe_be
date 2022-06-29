@@ -1,14 +1,23 @@
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { HeroContent } from '../components/organisms/herocontent'
+import { API } from '../lib/services'
 export interface commonProps {
   sliders: silderProps[]
   services: serviceProps[]
+  address: string
+  appNm: string
+  createdAt: string
+  descrption: string
+  email: string
+  id: string
+  logo: null
+  map: string
+  phone: string
 }
 export interface silderProps {
   title: string
   src: string
-  right: rightProps
 }
 export interface serviceProps {
   title: string
@@ -21,53 +30,26 @@ export interface rightProps {
   description: string
 }
 const HomePage: NextPage = () => {
-  const homeDemoData: commonProps = {
-    sliders: [
-      {
-        title: 'ဗိုလ်ချုပ်ပြတိုက်',
-        src: '/assets/carousel/1.jpeg',
-        right: {
-          title: 'Around the world',
-          subtitle: 'Discover our Reimagined History',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius sunt fuga, nulla culpa distinctio reiciendis dolore, perspiciatis eveniet quaerat nihil porro ullam. Ullam accusantium, doloremque dolorum cupiditate ea hic debitis.'
+  const [homeData, sethomeData] = useState<commonProps>()
+  const getcommonData = useCallback(() => {
+    API.get('/v1/setting')
+      .then(res => {
+        if(res.data && res.data.statusCode===200){
+           if(res.data.data && res.data.data.length>0){
+            sethomeData(res.data.data[0])
+           }
         }
-      },
-      {
-        title: 'ဗိုလ်ချုပ်ပြတိုက်',
-        src: '/assets/carousel/2.jpeg',
-        right: {
-          title: 'Around the world',
-          subtitle: 'Discover our Reimagined History',
-          description:
-            'Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius sunt fuga, nulla culpa distinctio reiciendis dolore, perspiciatis eveniet quaerat nihil porro ullam. Ullam accusantium, doloremque dolorum cupiditate ea hic debitis.'
-        }
-      }
-    ],
-    services: [
-      {
-        title: 'Explore',
-        subTitle: 'As a vistor',
-        src: ''
-      },
-      {
-        title: 'Be a hand',
-        subTitle: 'As a Donor',
-        src: ''
-      },
-      {
-        title: 'Explore',
-        subTitle: 'As a scientist',
-        src: ''
-      },
-      {
-        title: 'Be a part',
-        subTitle: 'In our Fundraiser',
-        src: ''
-      }
-    ]
-  }
-  return <HeroContent  {...homeDemoData}  />
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }, [])
+
+  useEffect(() => {
+    getcommonData()
+  }, [getcommonData])
+
+  return homeData ? <HeroContent {...homeData} /> : <div>loading...</div>
 }
 
 export default HomePage

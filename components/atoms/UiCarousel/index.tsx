@@ -48,7 +48,7 @@ export const UiCarousel: React.FC<props> = ({ sliders }) => {
               <div className=' backdrop-blur-md bg-slate-500/25'>
                 <div
                   // className="relative flex flex-col w-full py-2 mx-auto max-w-screen-2xl md:flex-row "
-                  className='grid grid-cols-1 md:grid-cols-2'
+                  className='grid  grid-cols-1 md:grid-cols-2'
                   style={{
                     height: height
                   }}
@@ -70,9 +70,7 @@ export const UiCarousel: React.FC<props> = ({ sliders }) => {
                     className='flex flex-col items-center content-center justify-center w-full space-y-3 text-slate-900 '
                   >
                     <div className='p-8 shadow-xl rounded-xl bg-slate-100/50'>
-                      <h4 className='text-4xl '>{s.right.title} </h4>
-                      <h6>{s.right.subtitle} </h6>
-                      <p> {s.right.description} </p>
+                      
                     </div>
                   </motion.div>
                   {/* <div className=" backdrop-blur-md"></div> */}
