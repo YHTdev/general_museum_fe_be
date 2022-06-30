@@ -12,6 +12,7 @@ export const UiCustomTextArea:React.FC<props> =({inputProps,formData,setFormData
      const [draftData, setDraftData] = useState("")
    
       const AddText =()=>{
+        
         if(draftData){
          
            if(formData && formData['pages']){
