@@ -1,18 +1,18 @@
-import { PrismaClient } from '@prisma/client'
-import { each } from 'lodash'
-import { NextApiRequest, NextApiResponse } from 'next'
+import { PrismaClient } from "@prisma/client";
+import { each } from "lodash";
+import { NextApiRequest, NextApiResponse } from "next";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 interface bookProp {
-  id?: string
-  name: string
-  pages: pageProps[]
-  categoryId: string
-  cover?: string
+  id?: string;
+  name: string;
+  pages: pageProps[];
+  categoryId: string;
+  cover?: string;
 }
 interface pageProps {
-  id?: string
-  desc: string
+  id?: string;
+  desc: string;
 }
 export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
@@ -25,27 +25,27 @@ export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
         categoryId: true,
         createdAt: true,
         updatedAt: true,
-        pages: true
-      }
-    })
+        pages: true,
+      },
+    });
     res.status(200).json({
       statusCode: 200,
-      data: books
-    })
+      data: books,
+    });
   } catch (error) {
     res.status(200).json({
       message: error,
-      stautsCode: 500
-    })
+      stautsCode: 500,
+    });
   }
-}
+};
 
 export const getBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const query: any = req.query
+    const query: any = req.query;
     const book = await prisma.book.findFirst({
       where: {
-        id: query.bookId
+        id: query.bookId,
       },
       select: {
         Category: true,
@@ -55,31 +55,31 @@ export const getBook = async (req: NextApiRequest, res: NextApiResponse) => {
         categoryId: true,
         createdAt: true,
         updatedAt: true,
-        pages: true
-      }
-    })
+        pages: true,
+      },
+    });
     res.status(200).json({
       statusCode: 200,
-      data: book
-    })
+      data: book,
+    });
   } catch (error) {
     res.status(200).json({
       message: error,
-      stautsCode: 500
-    })
+      stautsCode: 500,
+    });
   }
-}
+};
 
 export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const pagesJson:string[] = req.body.pages.split(',')
-    let pages:pageProps[]=[]
-    each(pagesJson,page=>{
+    const pagesJson: string[] = req.body.pages;
+    let pages: pageProps[] = [];
+    each(pagesJson, (page) => {
       pages.push({
-        desc:page
-      })
-    })
-   
+        desc: page,
+      });
+    });
+
     const book = await prisma.book.create({
       data: {
         name: req.body.name,
@@ -87,49 +87,49 @@ export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
         categoryId: req.body.categoryId,
         pages: {
           createMany: {
-            data: pages
-          }
-        }
-      }
-    })
+            data: pages,
+          },
+        },
+      },
+    });
     if (book) {
       res.status(200).json({
         statusCode: 200,
         message: `Book created successful`,
-        data: book
-      })
+        data: book,
+      });
     } else {
       res.status(200).json({
         statusCode: 422,
-        message: `Book created fail`
-      })
+        message: `Book created fail`,
+      });
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(200).json({
       message: error,
-      stautsCode: 500
-    })
+      stautsCode: 500,
+    });
   }
-}
+};
 
 export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     await prisma.page.deleteMany({
       where: {
-        bookId: req.body.id
-      }
-    })
-    const pagesJson:string[] = req.body.pages.split(',')
-    let pages:pageProps[]=[]
-    each(pagesJson,page=>{
+        bookId: req.body.id,
+      },
+    });
+    const pagesJson: string[] = req.body.pages.split(",");
+    let pages: pageProps[] = [];
+    each(pagesJson, (page) => {
       pages.push({
-        desc:page
-      })
-    })
+        desc: page,
+      });
+    });
     const book = await prisma.book.update({
       where: {
-        id: req.body.id
+        id: req.body.id,
       },
       data: {
         name: req.body.name,
@@ -137,54 +137,54 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
         categoryId: req.body.categoryId,
         pages: {
           createMany: {
-            data: pages
-          }
-        }
-      }
-    })
+            data: pages,
+          },
+        },
+      },
+    });
     if (book) {
       res.status(200).json({
         statusCode: 200,
         message: `Book updated successful`,
-        data: book
-      })
+        data: book,
+      });
     } else {
       res.status(200).json({
         statusCode: 422,
-        message: `Book updated fail`
-      })
+        message: `Book updated fail`,
+      });
     }
   } catch (error) {
     res.status(200).json({
       message: error,
-      stautsCode: 500
-    })
+      stautsCode: 500,
+    });
   }
-}
+};
 export const deleteBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const book = await prisma.book.delete({
       where: {
-        id: req.body.id
-      }
-    })
+        id: req.body.id,
+      },
+    });
     if (book) {
       res.status(200).json({
         statusCode: 200,
         message: `Book delete successful`,
-        data: book
-      })
+        data: book,
+      });
     } else {
       res.status(200).json({
         statusCode: 422,
-        message: `Book delete fail`
-      })
+        message: `Book delete fail`,
+      });
     }
   } catch (error) {
     res.status(200).json({
       message: error,
-      stautsCode: 500
-    })
+      stautsCode: 500,
+    });
   }
-}
+};
