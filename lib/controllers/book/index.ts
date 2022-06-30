@@ -43,9 +43,10 @@ export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
 export const getBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const query: any = req.query
+   
     const book = await prisma.book.findFirst({
       where: {
-        id: query.bookId
+        id: query.id
       },
       select: {
         Category: true,
@@ -72,7 +73,8 @@ export const getBook = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const pagesJson:string[] = req.body.pages.split(',')
+    const pagesJson:string[] =( req.body.pages);
+    console.log(pagesJson.length,"PageJson")
     let pages:pageProps[]=[]
     each(pagesJson,page=>{
       pages.push({
