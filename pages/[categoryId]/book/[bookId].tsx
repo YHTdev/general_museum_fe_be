@@ -15,7 +15,7 @@ const DetailBookPage: NextPage = props => {
     API.get('v1/book/' + bookId)
       .then(res => {
         if (res.data.statusCode === 200) {
-          console.log(res.data.data.pages)
+          console.log(res.data.data.pages,"bookIdPages")
           setBook(res.data.data)
         }
       })
@@ -64,6 +64,7 @@ const DetailBookPage: NextPage = props => {
             Start Page
           </Page>
           {book.pages.map((p: any, i: any) => {
+          
             return (
               <Page key={i} number={i + 1} title={book.name}>
                 {p.desc}
