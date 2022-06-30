@@ -64,8 +64,13 @@ const BookAdmin:NextPage =()=>{
 
     const CreateBook = (e:React.FormEvent)=>{
         e.preventDefault();
+        setIsCreateBookModalOpen(!isCreateBookModalOpen);
         API.post("/v1/admin/book",formData).then(res=>{
             console.log(res.data)
+            if(res.data && res.data.statusCode===200){
+                
+                getBooks();
+            }
         })
         .catch(err=>{
             console.log(err)

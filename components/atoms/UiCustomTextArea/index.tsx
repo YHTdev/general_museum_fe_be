@@ -11,6 +11,7 @@ export const UiCustomTextArea:React.FC<props> =({inputProps,formData,setFormData
      const [draftData, setDraftData] = useState("")
      const [draftDataArray, setdraftDataArray] = useState<string[]>([])
       const AddText =()=>{
+        
         if(draftData){
            setdraftDataArray([...draftDataArray,draftData])
            setDraftData("")
