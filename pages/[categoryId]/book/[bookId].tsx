@@ -80,14 +80,7 @@ const DetailBookPage: NextPage = props => {
 export default DetailBookPage
 
 export const Page = React.forwardRef((props: any, ref: any) => {
-  if (props.isStartPage) {
-    return (
-      <div
-        className="demoPage rounded-t-sm rounded-l-sm shadow-sm bg-cover bg-[url('')]"
-        ref={ref}
-      ></div>
-    )
-  }
+ 
   return (
     <div
       className='demoPage bg-white rounded-r-sm rounded-b-sm shadow-sm py-5 px-10 '

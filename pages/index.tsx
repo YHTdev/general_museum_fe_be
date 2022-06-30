@@ -49,7 +49,7 @@ const HomePage: NextPage = () => {
     getcommonData();
   }, [getcommonData]);
 
-  return homeData ? <HeroContent {...homeData} /> : <div>loading...</div>;
+  return homeData ? <HeroContent {...homeData} /> : <div>loading... </div>;
 };
 
 export default HomePage;
