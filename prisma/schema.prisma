@@ -72,6 +72,13 @@ model Book {
   categoryId String?
   updatedAt  DateTime  @default(now())
   createdAt  DateTime  @default(now())
+  language   String     @default("my")
+
+}
+
+enum lang {
+  my
+  en
 }
 
 model Page {
@@ -81,4 +88,5 @@ model Page {
   bookId    String?
   updatedAt DateTime @default(now())
   createdAt DateTime @default(now())
+  no        Int
 }

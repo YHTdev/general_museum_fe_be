@@ -15,10 +15,11 @@ import { UiHeader } from '../../../components/atoms/UiHeader'
     const query:any = props;
     const categoryId = query.categoryId;
    const [books,setBooks] = useState([]);
+   const [lang, setLang] = useState<"en"|"my"|"">("")
    const id=1;
    const getBooks = useCallback(
     () => {
-        API.get('v1/book')
+        API.get(`v1/book/?lang=${lang}`)
         .then(res=>{
             console.log(res.data)
             if(res.data.statusCode=== 200){

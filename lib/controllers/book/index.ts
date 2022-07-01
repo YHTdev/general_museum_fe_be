@@ -13,10 +13,21 @@ interface bookProp {
 interface pageProps {
   id?: string
   desc: string
+  no:number
+}
+interface queryProps{
+  language?:string
+ 
 }
 export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
+  const {lang} = req.query
+  let query:queryProps={}
+  if(lang && typeof lang === 'string' ){
+     query.language = lang==='my'?'my':'en'
+  }
   try {
     const books = await prisma.book.findMany({
+      where:query,
       select: {
         Category: true,
         id: true,
@@ -26,13 +37,15 @@ export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
         createdAt: true,
         updatedAt: true,
         pages: true
-      }
+      },
+      
     })
     res.status(200).json({
       statusCode: 200,
       data: books
     })
   } catch (error) {
+    console.log(error)
     res.status(200).json({
       message: error,
       stautsCode: 500
@@ -56,8 +69,13 @@ export const getBook = async (req: NextApiRequest, res: NextApiResponse) => {
         categoryId: true,
         createdAt: true,
         updatedAt: true,
-        pages: true
-      }
+        pages:{
+          orderBy:{
+            no:'asc'
+          }
+        }
+      },
+      
     })
     res.status(200).json({
       statusCode: 200,
@@ -76,9 +94,10 @@ export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
     const pagesJson:string[] =( req.body.pages);
     console.log(pagesJson.length,"PageJson")
     let pages:pageProps[]=[]
-    each(pagesJson,page=>{
+    each(pagesJson,(page,i)=>{
       pages.push({
-        desc:page
+        desc:page,
+        no:i+1
       })
     })
    
@@ -87,6 +106,7 @@ export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
         name: req.body.name,
         cover: req.body.cover,
         categoryId: req.body.categoryId,
+        language:req.body.isEn? 'en':'my',
         pages: {
           createMany: {
             data: pages
@@ -124,9 +144,10 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
     })
     const pagesJson:string[] = req.body.pages.split(',')
     let pages:pageProps[]=[]
-    each(pagesJson,page=>{
+    each(pagesJson,(page,i)=>{
       pages.push({
-        desc:page
+        desc:page,
+        no:i+1
       })
     })
     const book = await prisma.book.update({
@@ -137,6 +158,7 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
         name: req.body.name,
         cover: req.body.cover,
         categoryId: req.body.categoryId,
+        language:req.body.isEn? 'en':'my',
         pages: {
           createMany: {
             data: pages
