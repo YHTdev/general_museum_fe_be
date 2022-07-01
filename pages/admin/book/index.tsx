@@ -32,7 +32,7 @@ const BookAdmin: NextPage = () => {
 
   const [formData, setFormData] = useState<bookProps>()
   const editHandler = (book: bookProps) => {
-    console.log(book, 'book')
+   
     setFormData({
       ...formData,
       name: book.name,
