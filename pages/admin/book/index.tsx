@@ -1,3 +1,4 @@
+import { EditorState } from 'draft-js'
 import { NextPage } from 'next'
 import React, { useState, useCallback, useEffect } from 'react'
 import { PlusIcon } from '../../../components/atoms/icons/plusIcon'
@@ -12,6 +13,7 @@ const BookAdmin: NextPage = () => {
   const [books, setBooks] = useState([])
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [isCreateBookModalOpen, setIsCreateBookModalOpen] = useState(false)
+  const [editorState, setEditorState] = useState(()=>EditorState.createEmpty(),)
   const id = 1
   const getBooks = useCallback(() => {
     API.get('v1/book')
@@ -116,7 +118,7 @@ const BookAdmin: NextPage = () => {
           className=''
         >
           <form onSubmit={e => CreateBook(e)}>
-            <CreateBookForm formData={formData} setFormData={setFormData} />
+            <CreateBookForm editorState={editorState} setEditorState={setEditorState} formData={formData} setFormData={setFormData} />
           </form>
         </UiModal>
       </>
