@@ -3,7 +3,6 @@ import { API } from "../../../lib/services";
 import React, { useState, useCallback, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { UiHeader } from "../../../components/atoms/UiHeader";
-import Link from "next/link";
 // react-flip-book
 
 const DetailBookPage: NextPage = (props) => {
@@ -16,8 +15,6 @@ const DetailBookPage: NextPage = (props) => {
     API.get("v1/book/" + bookId)
       .then((res) => {
         if (res.data.statusCode === 200) {
-          console.log(res.data.data.pages, "bookIdPages");
-          console.log("BOOK ====>", res.data.data);
           setBook(res.data.data);
         }
       })
@@ -28,17 +25,11 @@ const DetailBookPage: NextPage = (props) => {
 
   useEffect(() => {
     getBook();
-    console.log("Books ==>", book);
   }, [getBook]);
 
   return (
     <div className="fixed flex flex-col items-center content-center justify-center w-full min-h-screen px-2 py-2 bg-slate-900">
       {book && book.name && <UiHeader title={book.name} />}
-      {book && book.name && (
-        <Link href={categoryId}>
-          <a className="bg-white "> TO Back</a>
-        </Link>
-      )}
 
       {book && book.pages && (
         <HTMLFlipBook
