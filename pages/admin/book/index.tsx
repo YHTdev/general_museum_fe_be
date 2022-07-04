@@ -13,7 +13,7 @@ const BookAdmin: NextPage = () => {
   const [books, setBooks] = useState([])
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [isCreateBookModalOpen, setIsCreateBookModalOpen] = useState(false)
-  const [editorState, setEditorState] = useState(()=>EditorState.createEmpty(),)
+
   const id = 1
   const getBooks = useCallback(() => {
     API.get('v1/book')
@@ -32,7 +32,14 @@ const BookAdmin: NextPage = () => {
     console.log(books, 'Books')
   }, [getBooks])
 
-  const [formData, setFormData] = useState<bookProps>()
+  const [formData, setFormData] = useState<bookProps>({
+    isEn:false,
+    name:"",
+    cover:"",
+    categoryId:"",
+    pages:[]
+  })
+  console.log(formData)
   const editHandler = (book: bookProps) => {
    
     setFormData({
@@ -40,8 +47,10 @@ const BookAdmin: NextPage = () => {
       name: book.name,
       cover: book.cover,
       categoryId: book.categoryId,
-      pages: book.pages
+      pages: book.pages,
+      
     })
+    
 
     setIsEditModalOpen(!isEditModalOpen)
   }
@@ -118,7 +127,7 @@ const BookAdmin: NextPage = () => {
           className=''
         >
           <form onSubmit={e => CreateBook(e)}>
-            <CreateBookForm editorState={editorState} setEditorState={setEditorState} formData={formData} setFormData={setFormData} />
+            <CreateBookForm  formData={formData} setFormData={setFormData} />
           </form>
         </UiModal>
       </>

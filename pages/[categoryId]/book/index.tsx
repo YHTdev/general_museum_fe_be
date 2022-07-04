@@ -19,7 +19,7 @@ import { UiToggle } from '../../../components/atoms/UiToggle'
   
    const getBooks = useCallback(
     () => {
-        API.get(`v1/book/?lang=${language}`)
+        API.get(`v1/book/?lang=${language}&categoryId=${categoryId}`)
         .then(res=>{
             console.log(res.data)
             if(res.data.statusCode=== 200){
@@ -43,16 +43,16 @@ import { UiToggle } from '../../../components/atoms/UiToggle'
     getBooks()
     console.log(books,"Books")
    }, [getBooks])
-   const cbooks= books.filter((b:any)=>b.categoryId===categoryId);
+  
     return(
         <div>
             
             <div className="bg-slate-900 min-h-screen px-2 py-2">
                 <div className='absolute right-6 top-4'>
-                    <UiToggle loading={loading} changeLang={changeLang}/>
+                    <UiToggle title="" loading={loading} changeLang={changeLang}/>
                 </div>
                 <UiHeader title='စာအုပ်များ...' />
-                <BooksForm books={cbooks}/>
+                <BooksForm books={books}/>
                     
             </div>
         </div>

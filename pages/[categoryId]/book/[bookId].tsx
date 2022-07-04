@@ -3,6 +3,7 @@ import { API } from '../../../lib/services'
 import React, { useState, useCallback, useEffect } from 'react'
 import HTMLFlipBook from 'react-pageflip'
 import { UiHeader } from '../../../components/atoms/UiHeader'
+import { HTMLComponent } from 'react-typescript-raw-html'
 // react-flip-book
 
 const DetailBookPage: NextPage = props => {
@@ -67,7 +68,9 @@ const DetailBookPage: NextPage = props => {
           
             return (
               <Page key={i} number={i + 1} title={book.name}>
-                {p.desc}
+                <HTMLComponent 
+                  rawHTML={p.desc}
+                />
               </Page>
             )
           })}
