@@ -17,13 +17,17 @@ interface pageProps {
 }
 interface queryProps{
   language?:string
+  categoryId?:string
  
 }
 export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
-  const {lang} = req.query
+  const {lang,categoryId} = req.query
   let query:queryProps={}
   if(lang && typeof lang === 'string' ){
      query.language = lang==='my'?'my':'en'
+  }
+  if(categoryId && typeof categoryId==='string'){
+    query.categoryId= categoryId
   }
   try {
     const books = await prisma.book.findMany({
