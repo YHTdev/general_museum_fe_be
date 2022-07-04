@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
+import 'react-quill/dist/quill.snow.css'; // ES6
 import "swiper/css";
+import 'react-quill/dist/quill.snow.css'
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/effect-cube";
