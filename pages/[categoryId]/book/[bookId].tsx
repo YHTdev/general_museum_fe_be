@@ -10,7 +10,7 @@ const DetailBookPage: NextPage = props => {
   const bookId = query.bookId
   const categoryId = query.categoryId
   const [book, setBook]: any = useState()
-  const i = 1
+  
   const getBook = useCallback(() => {
     API.get('v1/book/' + bookId)
       .then(res => {
@@ -22,7 +22,7 @@ const DetailBookPage: NextPage = props => {
       .catch(err => {
         console.log(JSON.stringify(err))
       })
-  }, [i])
+  }, [bookId])
 
   useEffect(() => {
     getBook()
@@ -60,8 +60,8 @@ const DetailBookPage: NextPage = props => {
           renderOnlyPageLengthChange={false}
           className='m-20 rounded shadow-sm  flex justify-center mx-40'
         >
-          <Page number='0' isStartPage>
-            Start Page
+          <Page number='' isStartPage>
+            
           </Page>
           {book.pages.map((p: any, i: any) => {
           
@@ -84,14 +84,14 @@ export const Page = React.forwardRef((props: any, ref: any) => {
  
   return (
     <div
-      className='demoPage bg-white rounded-r-sm rounded-b-sm shadow-sm py-5 px-10 '
+      className='demoPage bg-white rounded-r-sm rounded-b-sm shadow-md py-5 px-10 '
       ref={ref}
     >
       <h1 className='mb-5'>{props.title}</h1>
       <p className='flex flex-1 flex-wrap text-sm text-gray-900'>
         {props.children}
       </p>
-      <p className='absolute left-36 bottom-1 flex justify-center text-sm text-slate-900'>
+      <p className='absolute left-2/4 bottom-1 flex justify-center text-sm text-slate-900'>
         {props.number}
       </p>
     </div>

@@ -19,6 +19,7 @@ export interface bookProps{
     updatedAt?:string;
     pages?:pageProps[];
     Category?:categoryProps;
+    isEn?:boolean
 }
 interface props{
     books:bookProps[]
