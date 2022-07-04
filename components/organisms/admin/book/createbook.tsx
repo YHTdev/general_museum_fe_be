@@ -1,5 +1,5 @@
 import React, { Dispatch, useState } from "react";
-import { UiCustomTextArea } from "../../../atoms/UiCustomTextArea";
+
 import { UiEditor } from "../../../atoms/UiEditor";
 import { UiFileInput } from "../../../atoms/UiFileInput";
 import { UiInput } from "../../../atoms/UiInput";
@@ -10,11 +10,10 @@ import { UiSubmit } from "../../../atoms/UiSubmit";
 interface props{
     formData:any
     setFormData:Dispatch<React.SetStateAction<any>>,
-    editorState:Draft.DraftModel.ImmutableData.EditorState,
-    setEditorState:React.Dispatch<React.SetStateAction<Draft.DraftModel.ImmutableData.EditorState>>
+   
 }
-export const CreateBookForm:React.FC<props> =({formData,setFormData,editorState,setEditorState})=>{
-    console.log(editorState,"editor State")
+export const CreateBookForm:React.FC<props> =({formData,setFormData})=>{
+    console.log(formData,"formData")
    
     return(
         <div>
@@ -36,13 +35,9 @@ export const CreateBookForm:React.FC<props> =({formData,setFormData,editorState,
                 setFormData={setFormData}
                 inputProps={{name:"cover",id:"cover"}}
             />
-            {/* <UiCustomTextArea 
-                formData={formData} 
-                setFormData={setFormData}
-                inputProps={{id:"pages",name:"pages"}}
-            /> */}
+          
            
-            <UiEditor editorState={editorState} setEditorState={setEditorState} />
+            <UiEditor formData={formData} setFormData={setFormData} name='desc' />
             <UiSubmit title="Create"/>
 
         </div>
