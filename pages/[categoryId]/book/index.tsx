@@ -1,24 +1,23 @@
-import { NextPage } from "next";
 import React, { FC, useState, useCallback, useEffect } from "react";
 import { API } from "../../../lib/services";
-import { motion } from "framer-motion";
-import Link from "next/link";
+
 import { BooksForm } from "../../../components/organisms/books";
 import { UiHeader } from "../../../components/atoms/UiHeader";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store/";
+import { setLang } from "../../../store/common";
 
-// interface BookListPage{
-//     data: any
-// }
-
-// const BookListPage:FC<BookListPage> =({data})=>{
 const BookListPage: FC = (props) => {
   const query: any = props;
   const categoryId = query.categoryId;
   const [books, setBooks] = useState([]);
-  const [lang, setLang] = useState<"en" | "my" | "">("");
+  const { language } = useSelector((state: RootState) => state.common);
+  const dispatch = useDispatch();
+  console.log(language);
+
   const id = 1;
   const getBooks = useCallback(() => {
-    API.get(`v1/book/?lang=${lang}`)
+    API.get(`v1/book/?lang=${language}`)
       .then((res) => {
         console.log(res.data);
         if (res.data.statusCode === 200) {
@@ -29,6 +28,10 @@ const BookListPage: FC = (props) => {
         console.log(JSON.stringify(err));
       });
   }, [id]);
+  const changeLang = () => {
+    dispatch(setLang("en"));
+    getBooks();
+  };
 
   useEffect(() => {
     getBooks();
@@ -38,7 +41,6 @@ const BookListPage: FC = (props) => {
     <div>
       <div className="min-h-screen px-2 py-2 bg-slate-900">
         <UiHeader title="စာအုပ်များ..." />
-
         <BooksForm books={books} />
       </div>
     </div>
