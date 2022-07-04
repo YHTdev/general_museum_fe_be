@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { NextPage } from "next";
 import { API } from "../../../lib/services";
 import React, { useState, useCallback, useEffect } from "react";
@@ -11,6 +12,22 @@ const DetailBookPage: NextPage = (props) => {
   const categoryId = query.categoryId;
   const [book, setBook]: any = useState();
   const i = 1;
+=======
+import { NextPage } from 'next'
+import { API } from '../../../lib/services'
+import React, { useState, useCallback, useEffect } from 'react'
+import HTMLFlipBook from 'react-pageflip'
+import { UiHeader } from '../../../components/atoms/UiHeader'
+import { HTMLComponent } from 'react-typescript-raw-html'
+// react-flip-book
+
+const DetailBookPage: NextPage = props => {
+  const query: any = props
+  const bookId = query.bookId
+  const categoryId = query.categoryId
+  const [book, setBook]: any = useState()
+  
+>>>>>>> 3841227fc339801444600105952cc6c0f1121b2a
   const getBook = useCallback(() => {
     API.get("v1/book/" + bookId)
       .then((res) => {
@@ -18,10 +35,17 @@ const DetailBookPage: NextPage = (props) => {
           setBook(res.data.data);
         }
       })
+<<<<<<< HEAD
       .catch((err) => {
         console.log(JSON.stringify(err));
       });
   }, [i]);
+=======
+      .catch(err => {
+        console.log(JSON.stringify(err))
+      })
+  }, [bookId])
+>>>>>>> 3841227fc339801444600105952cc6c0f1121b2a
 
   useEffect(() => {
     getBook();
@@ -56,14 +80,23 @@ const DetailBookPage: NextPage = (props) => {
           clickEventForward={true}
           useMouseEvents={true}
           renderOnlyPageLengthChange={false}
+<<<<<<< HEAD
           className="flex justify-center m-20 mx-40 rounded shadow-sm">
           <Page number="0" isStartPage>
             Start Page
+=======
+          className='m-20 rounded shadow-sm  flex justify-center mx-40'
+        >
+          <Page number='' isStartPage>
+            
+>>>>>>> 3841227fc339801444600105952cc6c0f1121b2a
           </Page>
           {book.pages.map((p: any, i: any) => {
             return (
               <Page key={i} number={i + 1} title={book.name}>
-                {p.desc}
+                <HTMLComponent 
+                  rawHTML={p.desc}
+                />
               </Page>
             );
           })}
@@ -78,6 +111,7 @@ export default DetailBookPage;
 // eslint-disable-next-line react/display-name
 export const Page = React.forwardRef((props: any, ref: any) => {
   return (
+<<<<<<< HEAD
     <>
       <div
         className="px-10 py-5 bg-white rounded-b-sm rounded-r-sm shadow-sm demoPage "
@@ -94,6 +128,23 @@ export const Page = React.forwardRef((props: any, ref: any) => {
   );
 });
 export async function getServerSideProps(context: any) {
+=======
+    <div
+      className='demoPage bg-white rounded-r-sm rounded-b-sm shadow-md py-5 px-10 '
+      ref={ref}
+    >
+      <h1 className='mb-5'>{props.title}</h1>
+      <p className='flex flex-1 flex-wrap text-sm text-gray-900'>
+        {props.children}
+      </p>
+      <p className='absolute left-2/4 bottom-1 flex justify-center text-sm text-slate-900'>
+        {props.number}
+      </p>
+    </div>
+  )
+})
+export async function getServerSideProps (context: any) {
+>>>>>>> 3841227fc339801444600105952cc6c0f1121b2a
   return {
     props: {
       categoryId: context.query.categoryId,

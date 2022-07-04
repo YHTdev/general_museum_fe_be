@@ -1,7 +1,8 @@
 import dynamic from 'next/dynamic'
 import React, { useState } from 'react'
-import ReactQuill from 'react-quill'
+
 import { useToasts } from 'react-toast-notifications'
+import { PlusIcon } from '../icons/plusIcon'
 interface props {
   formData: any
   setFormData: React.Dispatch<React.SetStateAction<any>>
@@ -66,11 +67,12 @@ export const UiEditor: React.FC<props> = ({ formData, setFormData, name }) => {
     <div className='px-2 py-2'>
       <button
         type='button'
+        className="focus:outline-none"
         onClick={() => {
           AddHandler()
         }}
       >
-        add
+         <PlusIcon className='text-secondary w-auto h-7' />
       </button>
       <QuillNoSSRWrapper
         value={draftData}

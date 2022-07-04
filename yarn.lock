@@ -3397,6 +3397,13 @@ react-transition-group@^4.4.1:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
+react-typescript-raw-html@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/react-typescript-raw-html/-/react-typescript-raw-html-0.0.9.tgz#2a97c6eb96fa4e0328ec5fb210ff485e8da68ff6"
+  integrity sha512-7mJsOMZxInPrDnZSxcz9CnkWXga6KTv65KsUM2HdvktP036kPhjEECVcdsxcXz12Kohp0CM2AAQLbhcjnLV+Tg==
+  dependencies:
+    unreachable-ts "2.0.0-alpha.1"
+
 react@18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-18.2.0.tgz#555bd98592883255fa00de14f1151a917b5d77d5"
@@ -4058,6 +4065,11 @@ unbox-primitive@^1.0.2:
     has-bigints "^1.0.2"
     has-symbols "^1.0.3"
     which-boxed-primitive "^1.0.2"
+
+unreachable-ts@2.0.0-alpha.1:
+  version "2.0.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/unreachable-ts/-/unreachable-ts-2.0.0-alpha.1.tgz#731038007c2ed4adc9e8b98c750b6ce8eb50bc17"
+  integrity sha512-A0sGsDEJ1mFVVA3AHpLSFCOvKE2s0XXs57GU92zMhzjr+IScm5TD1QxxuOPY03bvzGJnaPbRiFQ/O0FTdBIjjg==
 
 update-browserslist-db@^1.0.0:
   version "1.0.4"

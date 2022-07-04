@@ -6,6 +6,8 @@ import { UiInput } from "../../../atoms/UiInput";
 import { UiSelectInput } from "../../../atoms/UiSelect";
 
 import { UiSubmit } from "../../../atoms/UiSubmit";
+import { UiToggleSwitch } from "../../../atoms/UiToggleSwitch";
+
 
 interface props{
     formData:any
@@ -36,8 +38,14 @@ export const CreateBookForm:React.FC<props> =({formData,setFormData})=>{
                 inputProps={{name:"cover",id:"cover"}}
             />
           
-           
-            <UiEditor formData={formData} setFormData={setFormData} name='desc' />
+            <UiToggleSwitch     
+                title="En" 
+                id="isEn"
+                name="isEn"
+                formData={formData}
+                setFormData={setFormData}
+            />
+            <UiEditor formData={formData} setFormData={setFormData} name='pages' />
             <UiSubmit title="Create"/>
 
         </div>
