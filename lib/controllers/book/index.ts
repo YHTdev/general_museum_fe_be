@@ -14,6 +14,7 @@ interface pageProps {
   id?: string
   desc: string
   no:number
+  bookId?:string;
 }
 interface queryProps{
   language?:string
@@ -143,35 +144,52 @@ export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
+   
     await prisma.page.deleteMany({
       where: {
         bookId: req.body.id
       }
     })
     const pagesJson:string[] =( req.body.pages);
-    console.log(pagesJson.length,"PageJson")
+    
     let pages:pageProps[]=[]
     each(pagesJson,(page,i)=>{
+      console.log(page)
       pages.push({
         desc:page,
-        no:i+1
+        no:i+1,
+       
       })
     })
-   
+    if(pages.length>0){
+      await prisma.page.deleteMany({
+        where:{
+          bookId:req.body.id
+        }
+      })
+    }
+    
+     
     const book = await prisma.book.update({
       where: {
         id: req.body.id,
       },
-      data: {
+      data: pages.length>0?{
         name: req.body.name,
         cover: req.body.cover,
         categoryId: req.body.categoryId,
         language:req.body.isEn? 'en':'my',
-        pages: {
-          createMany: {
-            data: pages,
-          },
-        },
+        pages:{
+          createMany:{
+            data:pages
+          }
+        }
+      }:{
+        name: req.body.name,
+        cover: req.body.cover,
+        categoryId: req.body.categoryId,
+        language:req.body.isEn? 'en':'my',
+        
       },
     });
     if (book) {
@@ -187,6 +205,7 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
       });
     }
   } catch (error) {
+    console.log(error)
     res.status(200).json({
       message: error,
       stautsCode: 500,

@@ -4,7 +4,7 @@ import { UiFileInput } from "../../../atoms/UiFileInput";
 import { UiInput } from "../../../atoms/UiInput";
 import { UiSelectInput } from "../../../atoms/UiSelect";
 import { UiSubmit } from "../../../atoms/UiSubmit";
-import { UiTextarea } from "../../../atoms/UiTextarea";
+
 import { UiToggleSwitch } from "../../../atoms/UiToggleSwitch";
 interface props{
     formData:any

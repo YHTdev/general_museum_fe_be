@@ -99,7 +99,7 @@ export const Page = React.forwardRef((props: any, ref: any) => {
       ref={ref}
     >
       <h1 className='mb-5'>{props.title}</h1>
-      <p className='flex flex-1 flex-wrap text-sm text-gray-900'>
+      <p className='flex flex-1 flex-wrap text-sm leading-7 text-gray-900'>
         {props.children}
       </p>
       <p className='absolute left-2/4 bottom-1 flex justify-center text-sm text-slate-900'>
