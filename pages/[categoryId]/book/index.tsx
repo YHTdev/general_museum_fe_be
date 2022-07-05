@@ -10,6 +10,7 @@ import { UiToggle } from '../../../components/atoms/UiToggle'
  const BookListPage:FC =(props)=>{
     const query:any = props;
     const categoryId = query.categoryId;
+    
    const [books,setBooks] = useState([]);
    const {language,loading} = useSelector((state:RootState)=>state.common)
    const dispatch = useDispatch()
@@ -17,7 +18,7 @@ import { UiToggle } from '../../../components/atoms/UiToggle'
   
    const getBooks = useCallback(
     () => {
-        API.get(`v1/book/?lang=${language}&categoryId=${categoryId}`)
+        API.get(`v1/book/all?lang=${language}&categoryId=${categoryId}`)
         .then(res=>{
             console.log(res.data)
             if(res.data.statusCode=== 200){
@@ -56,4 +57,18 @@ import { UiToggle } from '../../../components/atoms/UiToggle'
         </div>
     )
     }
+
+    export async function getServerSideProps(context:any) {
+    
+        return {
+          props: {
+            categoryId:context.query.categoryId
+          
+          },
+        }
+      }
+    
+    
 export default BookListPage;
+
+

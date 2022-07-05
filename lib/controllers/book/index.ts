@@ -22,6 +22,7 @@ interface queryProps{
 }
 export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
   const {lang,categoryId} = req.query
+  console.log("call from getbooks")
   let query:queryProps={}
   if(lang && typeof lang === 'string' ){
      query.language = lang==='my'?'my':'en'
@@ -60,10 +61,11 @@ export const getBooks = async (req: NextApiRequest, res: NextApiResponse) => {
 export const getBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const query: any = req.query
-   
-    const book = await prisma.book.findFirst({
+     console.log("calling from boook")
+    const book = await prisma.book.findUnique({
       where: {
-        id: query.id
+        id: query.bookId,
+       
       },
       select: {
         Category: true,
