@@ -70,7 +70,7 @@ export const UiCarousel: React.FC<props> = ({ sliders }) => {
                     className='flex flex-col items-center content-center justify-center w-full space-y-3 text-slate-900 '
                   >
                     <div className='p-8 shadow-xl rounded-xl bg-slate-100/50'>
-                      
+                       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates exercitationem assumenda veniam commodi, laboriosam eligendi nihil dolorum laborum, libero explicabo dolores vitae ipsa voluptatibus laudantium tempora nisi cum, fugit saepe!
                     </div>
                   </motion.div>
                   {/* <div className=" backdrop-blur-md"></div> */}
