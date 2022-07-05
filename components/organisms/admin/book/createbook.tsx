@@ -1,17 +1,22 @@
 import React, { Dispatch, useState } from "react";
-import { UiCustomTextArea } from "../../../atoms/UiCustomTextArea";
+
+import { UiEditor } from "../../../atoms/UiEditor";
 import { UiFileInput } from "../../../atoms/UiFileInput";
 import { UiInput } from "../../../atoms/UiInput";
 import { UiSelectInput } from "../../../atoms/UiSelect";
+
 import { UiSubmit } from "../../../atoms/UiSubmit";
-import { UiTextarea } from "../../../atoms/UiTextarea";
+import { UiToggleSwitch } from "../../../atoms/UiToggleSwitch";
+
+
 interface props{
     formData:any
-    setFormData:Dispatch<React.SetStateAction<any>>
+    setFormData:Dispatch<React.SetStateAction<any>>,
+   
 }
 export const CreateBookForm:React.FC<props> =({formData,setFormData})=>{
-    const [tempData, setTempData] = useState<string>("")
     console.log(formData,"formData")
+   
     return(
         <div>
             <UiInput
@@ -32,12 +37,17 @@ export const CreateBookForm:React.FC<props> =({formData,setFormData})=>{
                 setFormData={setFormData}
                 inputProps={{name:"cover",id:"cover"}}
             />
-            <UiCustomTextArea 
-                formData={formData} 
+          
+            <UiToggleSwitch     
+                title="En" 
+                id="isEn"
+                name="isEn"
+                formData={formData}
                 setFormData={setFormData}
-                inputProps={{id:"pages",name:"pages"}}
             />
+            <UiEditor formData={formData} setFormData={setFormData} name='pages' />
             <UiSubmit title="Create"/>
+
         </div>
     )
 }
