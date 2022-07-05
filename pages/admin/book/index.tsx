@@ -1,6 +1,7 @@
 import { EditorState } from 'draft-js'
 import { NextPage } from 'next'
 import React, { useState, useCallback, useEffect } from 'react'
+import { useToasts } from 'react-toast-notifications'
 import { PlusIcon } from '../../../components/atoms/icons/plusIcon'
 import { UiModal } from '../../../components/atoms/UiModal'
 import { BookForm, bookProps } from '../../../components/organisms/admin/book'
@@ -13,10 +14,10 @@ const BookAdmin: NextPage = () => {
   const [books, setBooks] = useState([])
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
   const [isCreateBookModalOpen, setIsCreateBookModalOpen] = useState(false)
-
+  const {addToast} = useToasts()
   const id = 1
   const getBooks = useCallback(() => {
-    API.get('v1/book')
+    API.get('v1/book/all')
       .then(res => {
         if (res.data.statusCode === 200) {
           setBooks(res.data.data)
@@ -48,6 +49,7 @@ const BookAdmin: NextPage = () => {
       cover: book.cover,
       categoryId: book.categoryId,
       pages: book.pages,
+      id:book.id
       
     })
     
@@ -56,6 +58,18 @@ const BookAdmin: NextPage = () => {
   }
   const EditForm = (e: any) => {
     e.preventDefault()
+    setIsEditModalOpen(!isEditModalOpen)
+    API.put('/v1/admin/book', formData)
+      .then(res => {
+        if (res.data.statusCode === 200) {
+          addToast("success",{appearance:'success',autoDismiss:true})
+          getBooks()
+          
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
   const deleteHandler = (id: string) => {
     API.delete('/v1/admin/book', {
@@ -82,7 +96,7 @@ const BookAdmin: NextPage = () => {
     API.post('/v1/admin/book', formData)
       .then(res => {
         if (res.data.statusCode === 200) {
-          
+          addToast("success",{appearance:'success',autoDismiss:true})
           getBooks()
         }
       })

@@ -148,7 +148,8 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
         bookId: req.body.id
       }
     })
-    const pagesJson:string[] = req.body.pages.split(',')
+    const pagesJson:string[] =( req.body.pages);
+    console.log(pagesJson.length,"PageJson")
     let pages:pageProps[]=[]
     each(pagesJson,(page,i)=>{
       pages.push({
@@ -156,6 +157,7 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
         no:i+1
       })
     })
+   
     const book = await prisma.book.update({
       where: {
         id: req.body.id,

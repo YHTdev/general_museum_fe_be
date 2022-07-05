@@ -1,9 +1,11 @@
 import React, { Dispatch } from "react";
+import { UiEditor } from "../../../atoms/UiEditor";
 import { UiFileInput } from "../../../atoms/UiFileInput";
 import { UiInput } from "../../../atoms/UiInput";
 import { UiSelectInput } from "../../../atoms/UiSelect";
 import { UiSubmit } from "../../../atoms/UiSubmit";
 import { UiTextarea } from "../../../atoms/UiTextarea";
+import { UiToggleSwitch } from "../../../atoms/UiToggleSwitch";
 interface props{
     formData:any
     setFormData:Dispatch<React.SetStateAction<any>>
@@ -30,12 +32,14 @@ export const BookEditForm:React.FC<props> =({formData,setFormData})=>{
                 setFormData={setFormData}
                 inputProps={{name:"cover",id:"cover"}}
             />
-            <UiTextarea 
+            <UiToggleSwitch     
+                title="En" 
+                id="isEn"
+                name="isEn"
                 formData={formData}
                 setFormData={setFormData}
-                name="pages"
-                id="pages"
             />
+            <UiEditor formData={formData} setFormData={setFormData} name='pages' />
             <UiSubmit title="Edit"/>
         </div>
     )
