@@ -6,14 +6,14 @@ import { UiHeader } from '../../../components/atoms/UiHeader'
 import { HTMLComponent } from 'react-typescript-raw-html'
 // react-flip-book
 
-const DetailBookPage: NextPage = props => {
-  const query: any = props
-  const bookId = query.bookId
-  const categoryId = query.categoryId
-  const [book, setBook]: any = useState()
+const DetailBookPage: NextPage = (props:any) => {
   
+  const [book, setBook]: any = useState()
+  const bookId = props.bookId;
+  
+  const categoryId = props.categoryId
   const getBook = useCallback(() => {
-    API.get("v1/book/" + bookId)
+    API.get(`/v1/book/getbook?bookId=${bookId}&categoryId=${categoryId}`)
       .then((res) => {
         if (res.data.statusCode === 200) {
           setBook(res.data.data);
@@ -77,6 +77,18 @@ const DetailBookPage: NextPage = props => {
   );
 };
 
+
+export async function getServerSideProps(context:any) {
+  console.log(context.query)
+  return {
+    props: {
+      categoryId: context.query.categoryId,
+      bookId: context.query.bookId,
+    
+    },
+  }
+}
+
 export default DetailBookPage;
 
 // eslint-disable-next-line react/display-name
@@ -96,11 +108,3 @@ export const Page = React.forwardRef((props: any, ref: any) => {
     </div>
   )
 })
-export async function getServerSideProps (context: any) {
-  return {
-    props: {
-      categoryId: context.query.categoryId,
-      bookId: context.query.bookId,
-    },
-  };
-}
