@@ -154,27 +154,19 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
     
     let pages:pageProps[]=[]
     each(pagesJson,(page,i)=>{
-      console.log(page)
+      
       pages.push({
         desc:page,
         no:i+1,
        
       })
     })
-    if(pages.length>0){
-      await prisma.page.deleteMany({
-        where:{
-          bookId:req.body.id
-        }
-      })
-    }
     
-     
-    const book = await prisma.book.update({
-      where: {
-        id: req.body.id,
-      },
-      data: pages.length>0?{
+    
+
+    let data:any 
+    if(pages.length>0){
+      data ={
         name: req.body.name,
         cover: req.body.cover,
         categoryId: req.body.categoryId,
@@ -184,13 +176,28 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
             data:pages
           }
         }
-      }:{
+      }
+      await prisma.page.deleteMany({
+        where:{
+          bookId:req.body.id
+        }
+      })
+    }
+    else{
+      data ={
         name: req.body.name,
         cover: req.body.cover,
         categoryId: req.body.categoryId,
         language:req.body.isEn? 'en':'my',
-        
+       
+      }
+    }
+     
+    const book = await prisma.book.update({
+      where: {
+        id: req.body.id,
       },
+      data: data,
     });
     if (book) {
       res.status(200).json({

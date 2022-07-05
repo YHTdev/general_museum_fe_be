@@ -49,10 +49,7 @@ export const UiEditor: React.FC<props> = ({ formData, setFormData, name }) => {
     
       ['clean']         
     ],
-    clipboard: {
-      // toggle to add extra line breaks when pasting HTML:
-      matchVisual: false
-    }
+    
   }
   const { addToast } = useToasts()
   const [draftData, setdraftData] = useState('')
