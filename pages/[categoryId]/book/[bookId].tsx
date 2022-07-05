@@ -13,11 +13,10 @@ const DetailBookPage: NextPage = props => {
   const [book, setBook]: any = useState()
   
   const getBook = useCallback(() => {
-    API.get('v1/book/' + bookId)
-      .then(res => {
+    API.get("v1/book/" + bookId)
+      .then((res) => {
         if (res.data.statusCode === 200) {
-          console.log(res.data.data.pages,"bookIdPages")
-          setBook(res.data.data)
+          setBook(res.data.data);
         }
       })
       .catch(err => {
@@ -26,12 +25,11 @@ const DetailBookPage: NextPage = props => {
   }, [bookId])
 
   useEffect(() => {
-    getBook()
-    console.log(book, 'Book')
-  }, [getBook])
-  
+    getBook();
+  }, [getBook]);
+
   return (
-    <div className='bg-slate-900 flex w-full justify-center items-center content-center flex-col min-h-screen px-2 py-2'>
+    <div className="fixed flex flex-col items-center content-center justify-center w-full min-h-screen px-2 py-2 bg-slate-900">
       {book && book.name && <UiHeader title={book.name} />}
 
       {book && book.pages && (
@@ -42,7 +40,7 @@ const DetailBookPage: NextPage = props => {
           disableFlipByClick={true}
           style={{}}
           height={730}
-          size='fixed'
+          size="fixed"
           minWidth={600}
           minHeight={730}
           maxWidth={600}
@@ -65,26 +63,24 @@ const DetailBookPage: NextPage = props => {
             
           </Page>
           {book.pages.map((p: any, i: any) => {
-          
             return (
               <Page key={i} number={i + 1} title={book.name}>
                 <HTMLComponent 
                   rawHTML={p.desc}
                 />
               </Page>
-            )
+            );
           })}
-         
         </HTMLFlipBook>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default DetailBookPage
+export default DetailBookPage;
 
+// eslint-disable-next-line react/display-name
 export const Page = React.forwardRef((props: any, ref: any) => {
- 
   return (
     <div
       className='demoPage bg-white rounded-r-sm rounded-b-sm shadow-md py-5 px-10 '
@@ -104,7 +100,7 @@ export async function getServerSideProps (context: any) {
   return {
     props: {
       categoryId: context.query.categoryId,
-      bookId: context.query.bookId
-    }
-  }
+      bookId: context.query.bookId,
+    },
+  };
 }

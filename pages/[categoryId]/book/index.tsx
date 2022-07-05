@@ -1,7 +1,5 @@
-
-import React, { FC, useState,useCallback,useEffect } from 'react'
-import { API } from '../../../lib/services'
-
+import React, { FC, useState, useCallback, useEffect } from "react";
+import { API } from "../../../lib/services";
 import { BooksForm } from '../../../components/organisms/books'
 import { UiHeader } from '../../../components/atoms/UiHeader'
 import { useDispatch, useSelector } from 'react-redux'
@@ -57,17 +55,5 @@ import { UiToggle } from '../../../components/atoms/UiToggle'
             </div>
         </div>
     )
-}
-export async function getServerSideProps(context:any) {
-    
-    return {
-      props: {
-        categoryId:context.query.categoryId
-      
-      },
     }
-  }
-
-
-
-export default BookListPage
+export default BookListPage;
