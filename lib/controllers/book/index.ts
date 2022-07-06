@@ -144,7 +144,7 @@ export const createBook = async (req: NextApiRequest, res: NextApiResponse) => {
 
 export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-   
+     
     await prisma.page.deleteMany({
       where: {
         bookId: req.body.id
@@ -161,6 +161,8 @@ export const updateBook = async (req: NextApiRequest, res: NextApiResponse) => {
        
       })
     })
+
+
     
     
 

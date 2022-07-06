@@ -43,3 +43,7 @@
     border-radius: 10px;
     border: 1px solid #2b3646;
   }
+
+  .book_container p img{
+    height: 600px !important;
+  }
