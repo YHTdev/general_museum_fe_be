@@ -46,7 +46,7 @@ export const UiEditor: React.FC<props> = ({ formData, setFormData, name }) => {
       [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
       [{ 'font': ["olone"] }],
       [{ 'align': [] }],
-    
+     ['link', 'image', 'video'],
       ['clean']         
     ],
     
